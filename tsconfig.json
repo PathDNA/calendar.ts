@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "amd",
+    "outFile": "testing/calendar.js",
+    "moduleResolution": "classic",
+    "strict": true
+  }
+}
