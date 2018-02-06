@@ -45,6 +45,29 @@ export enum DaysOfWeek {
 	Saturday
 }
 
+
+
+export namespace DaysOfWeek {
+	function toString(d: DaysOfWeek): string {
+		switch (d) {
+			case DaysOfWeek.Sunday:
+				return "Sunday";
+			case DaysOfWeek.Monday:
+				return "Monday";
+			case DaysOfWeek.Tuesday:
+				return "Tuesday";
+			case DaysOfWeek.Wednesday:
+				return "Wednesday";
+			case DaysOfWeek.Thursday:
+				return "Thursday";
+			case DaysOfWeek.Friday:
+				return "Friday";
+			case DaysOfWeek.Saturday:
+				return "Saturday";
+		}
+	}
+}
+
 export enum Months {
 	January,
 	February,
@@ -58,6 +81,40 @@ export enum Months {
 	October,
 	November,
 	December,
+}
+
+export namespace Months {
+	export function toString(m: Months): string {
+		switch (m) {
+			case Months.January:
+				return "January";
+			case Months.February:
+				return "February";
+			case Months.March:
+				return "March";
+			case Months.April:
+				return "April";
+			case Months.May:
+				return "May";
+			case Months.June:
+				return "June";
+			case Months.July:
+				return "July";
+			case Months.August:
+				return "August";
+			case Months.September:
+				return "September";
+			case Months.October:
+				return "October";
+			case Months.November:
+				return "November";
+			case Months.December:
+				return "December";
+
+			default:
+				throw ("unsupported month: " + m);
+		}
+	}
 }
 
 export function calculateDayOfWeek(day: number, month: Months, year: number): DaysOfWeek {
@@ -81,6 +138,43 @@ export function calculateDayOfWeek(day: number, month: Months, year: number): Da
 	value = value % 7;
 	// Get day of week from remainder of value divided by 7
 	return getDayOfWeek(value);
+}
+
+export function getNumDays(month: Months, year: number): number {
+	switch (month) {
+		case Months.January:
+			return NumDays.January;
+		case Months.February:
+			if (!isLeapYear(year)) {
+				return NumDays.February;
+			}
+
+			return NumDays.February + 1;
+
+		case Months.March:
+			return NumDays.March;
+		case Months.April:
+			return NumDays.April;
+		case Months.May:
+			return NumDays.May;
+		case Months.June:
+			return NumDays.June;
+		case Months.July:
+			return NumDays.July;
+		case Months.August:
+			return NumDays.August;
+		case Months.September:
+			return NumDays.September;
+		case Months.October:
+			return NumDays.October;
+		case Months.November:
+			return NumDays.November;
+		case Months.December:
+			return NumDays.December;
+
+		default:
+			throw ("invalid month: " + month);
+	}
 }
 
 function getLastNDigits(value: number, n: number): number {
@@ -143,8 +237,6 @@ function getReductionValue(month: Months, year: number): number {
 		return 0;
 	}
 
-
-
 	if (month !== Months.January && month !== Months.February) {
 		return 0;
 	}
@@ -179,31 +271,10 @@ function getDayOfWeek(n: number): DaysOfWeek {
 			return DaysOfWeek.Thursday;
 		case 6:
 			return DaysOfWeek.Friday;
-		case 7:
+		case 0:
 			return DaysOfWeek.Saturday;
 
 		default:
 			throw ("invalid day of week");
-	}
-}
-
-
-
-export function toString(d: DaysOfWeek) {
-	switch (d) {
-		case DaysOfWeek.Sunday:
-			return "Sunday";
-		case DaysOfWeek.Monday:
-			return "Monday";
-		case DaysOfWeek.Tuesday:
-			return "Tuesday";
-		case DaysOfWeek.Wednesday:
-			return "Wednesday";
-		case DaysOfWeek.Thursday:
-			return "Thursday";
-		case DaysOfWeek.Friday:
-			return "Friday";
-		case DaysOfWeek.Saturday:
-			return "Saturday";
 	}
 }

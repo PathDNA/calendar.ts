@@ -63,6 +63,38 @@ define("calendar", ["require", "exports"], function (require, exports) {
         Months[Months["November"] = 10] = "November";
         Months[Months["December"] = 11] = "December";
     })(Months = exports.Months || (exports.Months = {}));
+    (function (Months) {
+        function toString(m) {
+            switch (m) {
+                case Months.January:
+                    return "January";
+                case Months.February:
+                    return "February";
+                case Months.March:
+                    return "March";
+                case Months.April:
+                    return "April";
+                case Months.May:
+                    return "May";
+                case Months.June:
+                    return "June";
+                case Months.July:
+                    return "July";
+                case Months.August:
+                    return "August";
+                case Months.September:
+                    return "September";
+                case Months.October:
+                    return "October";
+                case Months.November:
+                    return "November";
+                case Months.December:
+                    return "December";
+            }
+            return "UH";
+        }
+        Months.toString = toString;
+    })(Months = exports.Months || (exports.Months = {}));
     function calculateDayOfWeek(day, month, year) {
         let value = 0;
         const lastTwo = getLastNDigits(year, 2);
@@ -86,6 +118,40 @@ define("calendar", ["require", "exports"], function (require, exports) {
         return getDayOfWeek(value);
     }
     exports.calculateDayOfWeek = calculateDayOfWeek;
+    function getNumDays(month, year) {
+        switch (month) {
+            case Months.January:
+                return NumDays.January;
+            case Months.February:
+                if (!isLeapYear(year)) {
+                    return NumDays.February;
+                }
+                return NumDays.February + 1;
+            case Months.March:
+                return NumDays.March;
+            case Months.April:
+                return NumDays.April;
+            case Months.May:
+                return NumDays.May;
+            case Months.June:
+                return NumDays.June;
+            case Months.July:
+                return NumDays.July;
+            case Months.August:
+                return NumDays.August;
+            case Months.September:
+                return NumDays.September;
+            case Months.October:
+                return NumDays.October;
+            case Months.November:
+                return NumDays.November;
+            case Months.December:
+                return NumDays.December;
+            default:
+                throw ("invalid month: " + month);
+        }
+    }
+    exports.getNumDays = getNumDays;
     function getLastNDigits(value, n) {
         const str = value.toString();
         const lastN = str.substr(str.length - 2);
