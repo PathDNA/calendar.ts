@@ -1,0 +1,29 @@
+<html>
+
+<head>
+	<script type="application/javascript" src="./almond.js"></script>
+	<script type="application/javascript" src="./calendar.js"></script>
+</head>
+
+<body>
+	<script>
+		require(["calendar"], function (calendar) {
+			let dow = calendar.calculateDayOfWeek(16, calendar.Months.December, 2482);
+			if (dow !== calendar.DaysOfWeek.Wednesday) {
+				throw ("invalid value");
+			}
+
+			const d = new Date();
+			const cdow = d.getDay();
+			dow = calendar.calculateDayOfWeek(d.getDate(), d.getMonth(), d.getFullYear());
+			if (dow !== cdow) {
+				throw ("invalid day, current date does not match. Expected " + cdow + " and received " + cdow);
+			}
+
+			console.log("Tests pass!");
+		});
+
+	</script>
+</body>
+
+</html>

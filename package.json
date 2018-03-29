@@ -1,0 +1,10 @@
+{
+  "name": "calender",
+  "version": "0.0.1",
+  "description": "A simple calender helper library",
+  "main": "calender.ts",
+  "repository": "github.com/PathDNA/calender.ts",
+  "author": "PathDNA",
+  "license": "MIT",
+  "dependencies": {}
+}
